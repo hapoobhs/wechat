@@ -70,4 +70,3 @@ var server = http.createServer(function (request, response) {
 server.listen(PORT);
 
 console.log("Weixin server runing at port: " + PORT + ".");
-Status API Training Shop Blog About
