@@ -2,7 +2,7 @@ var PORT = 9529;
 var http = require('http');
 var qs = require('qs');
 
-var wss = require('./lib/ws.js');
+var wss = require('./lib/ws.js').wss;
 
 var TOKEN = 'hahaha';
 
