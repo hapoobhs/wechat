@@ -68,13 +68,16 @@ var server  = http.createServer(function(request, response){
 		request.addListener("end",function(){
 			var parseString = require('xml2js').parseString;
 
-			parseString(postdata,function(err,result){
-				if (!err) {
-					wss.broadcast(result);
-					var res = replyText(result, '这回得不得？');
-					response.end(res);
-				}
-			});
+			parseString(postdata, function (err, result) {
+        if(!err){
+          if(result.xml.MsgType[0] === 'text'){
+            //将消息通过websocket广播
+            wss.broadcast(result);
+            var res = replyText(result, '这回呢？');
+            response.end(res);
+          }
+        }
+      });
 		});
 	}
 });
