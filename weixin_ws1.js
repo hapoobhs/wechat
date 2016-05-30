@@ -71,7 +71,7 @@ var server  = http.createServer(function(request, response){
 			parseString(postdata,function(err,result){
 				if (!err) {
 					wss.broadcast(result);
-					var res = replyText(result, 'mighty eagle');
+					var res = replyText(result, '这回得不得？');
 					response.end(res);
 				}
 			});
