@@ -18,7 +18,7 @@ function checkSignature(params, token){
 
 var server  = http.createServer(function(request, response){
 	 var query = require('url').parse(request.url).query;
-     var params = qs.parse(query);
+  	 var params = qs.parse(query);
 
 
 	if(!checkSignature(params, TOKEN)){
@@ -37,8 +37,14 @@ var server  = http.createServer(function(request, response){
 		});
 
 		request.addListener("end",function(){
-			console.log(postdata);
-			response.end('success');
+			var parseString = require('xml2js').parseString;
+
+			parseString(postdata,function(err,result){
+				if (!err) {
+					console.log(result);
+					response.end('success');
+				}
+			});
 		});
 	}
 });
