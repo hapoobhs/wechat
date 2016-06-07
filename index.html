@@ -28,16 +28,20 @@
     console.log(evt.data)
     var msg = JSON.parse(evt.data);
     
-    if(msg.xml.MsgType[0]==='text')
+    if(msg.xml.MsgType[0]==='text'){
      var content = msg.xml.Content[0];
-    else if(msg.xml.MsgType[0]==='image')
+      oLi.innerHTML = userName + '<img src="'+headimg+'">' + '说:' + content;
+    }
+    else if(msg.xml.MsgType[0]==='image'){
       var content = msg.xml.PicUrl[0];
+       oLi.innerHTML = userName + '<img src="'+headimg+'">' + '说:' + '<img src='+content+'>';
+    }
 
     msg.user = msg.user || {};
     var userName = msg.user.nickname;
     var headimg = msg.user.headimgurl;
     var oLi = document.createElement('li');
-    oLi.innerHTML = userName + '<img src="'+headimg+'">' + '说:' + content;
+    // oLi.innerHTML = userName + '<img src="'+headimg+'">' + '说:' + content;
     msglist.appendChild(oLi);
   };
 </script>
