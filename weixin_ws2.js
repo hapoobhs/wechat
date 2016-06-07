@@ -116,10 +116,28 @@ function replyText(msg){
 
   if(msg.xml.MsgType[0] == 'text'){
     replyText = "excuse me?";
+    console.log(msg);
+  return tmpl(replyTmpl, {
+    toUser: msg.xml.FromUserName[0],
+    fromUser: msg.xml.ToUserName[0],
+    type: tp,
+    time: Date.now(),
+    content: ctxt
+  });
+
   }
   else if(msg.xml.MsgType[0] == 'image'){
     console.log("picture");
     replyText = "辣眼睛";
+    console.log(msg);
+  return tmpl(pictureTmpl, {
+    toUser: msg.xml.FromUserName[0],
+    fromUser: msg.xml.ToUserName[0],
+    type: tp,
+    time: Date.now(),
+    picUrl: msg.xml.PicUrl[0],
+    MediaId:msg.xml.MediaId[0]
+  });
   }
   else if(msg.xml.MsgType[0] == 'voice'){
     console.log("voice");
@@ -134,28 +152,4 @@ function replyText(msg){
     replyText="并不care"
    }
   
-
-  if (msg.xml.MsgType[0] == 'text') {
-    console.log(msg);
-    return tmpl(replyTmpl, {
-    toUser: msg.xml.FromUserName[0],
-    fromUser: msg.xml.ToUserName[0],
-    type: 'text',
-    time: Date.now(),
-    content: replyText
-  });
-  }
-
-  else if(msg.xml.MsgType[0] == 'image')
-  {
-    console.log(msg);
-    return tmpl(pictureTmpl, {
-     toUser: msg.xml.FromUserName[0],
-     fromUser: msg.xml.ToUserName[0],
-     type: 'image',
-     time: Date.now(),
-     picUrl: msg.xml.PicUrl[0],
-     MediaId:msg.xml.MediaId[0]
-  });
-}
 
