@@ -37,7 +37,11 @@
     var userName = msg.user.nickname;
     var headimg = msg.user.headimgurl;
     var oLi = document.createElement('li');
-    oLi.innerHTML = userName + '<img src="'+headimg+'">' + '说:' + content;
+
+    if(msg.xml.MsgType[0]==='text')
+      oLi.innerHTML = userName + '<img src="'+headimg+'">' + '说:' + content;
+    else if(msg.xml.MsgType[0]==='image')
+       oLi.innerHTML = userName + '<img src="'+headimg+'">' + '说:' + '<img src="'+content+'">'
     msglist.appendChild(oLi);
   };
 </script>
