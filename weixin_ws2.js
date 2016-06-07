@@ -116,24 +116,24 @@ function replyText(msg){
 
   if(msg.xml.MsgType[0] == 'text'){
     replyText = "excuse me?";
-    console.log(msg);
-  return tmpl(replyTmpl, {
+
+    return tmpl(replyTmpl, {
     toUser: msg.xml.FromUserName[0],
     fromUser: msg.xml.ToUserName[0],
-    type: tp,
+    type: 'text',
     time: Date.now(),
-    content: ctxt
-  });
+    content: replyText
+ });
 
   }
   else if(msg.xml.MsgType[0] == 'image'){
     console.log("picture");
     replyText = "辣眼睛";
-    console.log(msg);
-  return tmpl(pictureTmpl, {
+
+     return tmpl(pictureTmpl, {
     toUser: msg.xml.FromUserName[0],
     fromUser: msg.xml.ToUserName[0],
-    type: tp,
+    type: 'image',
     time: Date.now(),
     picUrl: msg.xml.PicUrl[0],
     MediaId:msg.xml.MediaId[0]
@@ -152,4 +152,5 @@ function replyText(msg){
     replyText="并不care"
    }
   
+}
 

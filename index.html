@@ -27,7 +27,12 @@
   {
     console.log(evt.data)
     var msg = JSON.parse(evt.data);
-    var content = msg.xml.Content[0];
+    
+    if(msg.xml.MsgType[0]==='text')
+     var content = msg.xml.Content[0];
+    else if(msg.xml.MsgType[0]==='image')
+      var content = msg.xml.PicUrl[0];
+
     msg.user = msg.user || {};
     var userName = msg.user.nickname;
     var headimg = msg.user.headimgurl;
