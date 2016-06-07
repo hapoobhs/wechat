@@ -1,4 +1,4 @@
-var PORT = require('./lib/config').wxPort;
+var PORT = 6666;
 
 var http = require('http');
 var qs = require('qs');
