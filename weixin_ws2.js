@@ -156,6 +156,6 @@ function replyText(msg){
      time: Date.now(),
      picUrl: msg.xml.PicUrl[0],
      MediaId:msg.xml.MediaId[0]
-  }
+  });
 }
 
