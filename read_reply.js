@@ -82,15 +82,15 @@ function replyText(msg){
   }
   else if(msg.xml.MsgType[0] == 'voice'){
     console.log("voice");
-    replyText = "难听到爆";
+    replyText = "你在敲破锣？";
   }
   else if(msg.xml.MsgType[0] == 'shortvideo')
    {
-    ctxt="丑逼";
+    replyText="丑逼";
    }
     else if(msg.xml.MsgType[0] == 'location')
    {
-    ctxt="I don't care"
+    replyText="并不care"
    }
   
 
