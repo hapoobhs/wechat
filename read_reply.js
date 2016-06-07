@@ -37,6 +37,9 @@ function replyText(msg){
   if(msg.xml.MsgType[0] == 'text'){
     replyText = "It's text";
   }
+  else if(msg.xml.MsgType[0] == 'image'){
+    replyText = "It's a picture"
+  }
 
   return tmpl(replyTmpl, {
     toUser: msg.xml.FromUserName[0],
