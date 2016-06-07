@@ -16,10 +16,49 @@ function checkSignature(params, token){
   return  sha1.digest('hex') == params.signature;
 }
 
-function replyText(msg){
-  //if(msg.xml.MsgType[0] !== 'text'){
-    //return '';
+
+var server = http.createServer(function (request, response) {
+
+  //解析URL中的query部分，用qs模块(npm install qs)将query解析成json
+  var query = require('url').parse(request.url).query;
+  var params = qs.parse(query);
+
+  if(!checkSignature(params, TOKEN)){
+    //如果签名不对，结束请求并返回
+    response.end('signature fail');
+    return;
   }
+
+	if (request.method == 'GET') {
+		response.end(params.echostr);
+	}
+	else{
+		var postdata = "";
+
+		request.addListener("data",function(postchunk){
+			postdata += postchunk;
+		});
+
+		request.addListener("end",function(){
+			var parseString = require('xml2js').parseString;
+
+			parseString(postdata,function(err,result){
+				if (!err) {
+					var res = replyText(result);
+					response.end(res);
+				}
+			});
+		});
+	}
+});
+
+server.listen(PORT);
+console.log("Server is running at port:" + PORT + ".");
+
+function replyText(msg){
+/*  if(msg.xml.MsgType[0] !== 'text'){
+    return '';
+  }*/
   console.log(msg);
 
   //将要返回的消息通过一个简单的tmpl模板（npm install tmpl）返回微信
@@ -55,40 +94,3 @@ function replyText(msg){
     content: replyText
   });
 }
-
-var server  = http.createServer(function(request, response){
-	 var query = require('url').parse(request.url).query;
-  	 var params = qs.parse(query);
-
-
-	if(!checkSignature(params, TOKEN)){
-		response.end('signature fail');
-		return;
-	}
-
-	if (request.method == 'GET') {
-		response.end(params.echostr);
-	}
-	else{
-		var postdata = "";
-
-		request.addListener("data",function(postchunk){
-			postdata += postchunk;
-		});
-
-		request.addListener("end",function(){
-			var parseString = require('xml2js').parseString;
-
-			parseString(postdata,function(err,result){
-				if (!err) {
-					var res = replyText(result);
-					response.end(res);
-				}
-			});
-		});
-	}
-});
-
-server.listen(PORT);
-
-console.log("Server is running at port:" + PORT + ".");
