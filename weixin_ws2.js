@@ -101,6 +101,17 @@ function replyText(msg){
     '<Content><![CDATA[{content}]]></Content>' +
     '</xml>';
 
+  var pictureTmpl='<xml>' +
+    '<ToUserName><![CDATA[{toUser}]]></ToUserName>' +
+    '<FromUserName><![CDATA[{fromUser}]]></FromUserName>' +
+    '<CreateTime><![CDATA[{time}]]></CreateTime>' +
+    '<MsgType><![CDATA[{type}]]></MsgType>' +
+    '<PicUrl><![CDATA[{picUrl}]]></PicUrl>' +
+        '<image>'+
+        '<MediaId><![CDATA[{MediaId}]]></MediaId>'+
+        '</image>'+
+    '</xml>';
+
   var replyText;
 
   if(msg.xml.MsgType[0] == 'text'){
@@ -123,7 +134,7 @@ function replyText(msg){
     replyText="并不care"
    }
   
-
+  console.log(msg);
   return tmpl(replyTmpl, {
     toUser: msg.xml.FromUserName[0],
     fromUser: msg.xml.ToUserName[0],
@@ -131,5 +142,17 @@ function replyText(msg){
     time: Date.now(),
     content: replyText
   });
+
+  else if(msg.xml.MsgType[0] == 'image')
+  {
+    console.log(msg);
+    return tmpl(pictureTmpl, {
+     toUser: msg.xml.FromUserName[0],
+     fromUser: msg.xml.ToUserName[0],
+     type: 'image',
+     time: Date.now(),
+     picUrl: msg.xml.PicUrl[0],
+     MediaId:msg.xml.MediaId[0]
+  }
 }
 
