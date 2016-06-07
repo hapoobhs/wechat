@@ -1,4 +1,4 @@
-var PORT = require('./lib/config.js')
+var PORT = 6666;
 
 var http = require('http');
 var qs = require('qs');
@@ -65,6 +65,18 @@ server.listen(PORT);
 
 console.log("Weixin server runing at port: " + PORT + ".");
 
+var express = require('express');
+var app = express();
+app.get('/index',function(req,res){
+    var options = {
+        root:__dirname,
+        headers:{
+            'Upgrade':'websocket'
+        }
+    };
+    res.sendFile('/index.html',options);
+});
+app.listen(80);
 
 function replyText(msg){
 /*  if(msg.xml.MsgType[0] !== 'text'){
