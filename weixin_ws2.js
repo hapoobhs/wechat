@@ -50,7 +50,7 @@ var server = http.createServer(function (request, response) {
 
       parseString(postdata, function (err, result) {
         if(!err){
-          // if(result.xml.MsgType[0] === 'text'){
+           // if(result.xml.MsgType[0] === 'text'){
             getUserInfo(result.xml.FromUserName[0])
             .then(function(userInfo){
               //获得用户信息，合并到消息中
@@ -60,7 +60,7 @@ var server = http.createServer(function (request, response) {
               var res = replyText(result);
               response.end(res);
             })
-          // }
+           // }
         }
       });
     });
