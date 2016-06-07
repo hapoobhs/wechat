@@ -47,18 +47,36 @@ var server  = http.createServer(function(request, response){
 
 			parseString(postdata, function (err, result) {
         if(!err){
-          if(result.xml.MsgType[0] === 'text'){
+          /*if(result.xml.MsgType[0] === 'text'){
             //将消息通过websocket广播
             wss.broadcast(result);
-            var res = replyText(result, '这回呢？');
+            var res = replyText(result);
             response.end(res);
-          }
+          }*/
+          wss.broadcast(result);
+          var res = replyText(result);
+          response.end(res);
         }
       });
-		});
+	});
 	}
 });
 
 server.listen(PORT);
 
 console.log("Server is running at port:" + PORT + ".");
+
+var express = require('express');
+var app = express();
+app.get('/index',function(req,res){
+    var options = {
+        root:__dirname,
+        headers:{
+            'Upgrade':'websocket'
+        }
+    };
+    res.sendFile('/index.html',options);
+});
+app.listen(80);
+
+console.log("Weixin server runing at port: " + PORT + ".");
