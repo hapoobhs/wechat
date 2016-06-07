@@ -74,17 +74,25 @@ function replyText(msg){
   var replyText;
 
   if(msg.xml.MsgType[0] == 'text'){
-    replyText = "It's text";
+    replyText = "excuse me?";
   }
   else if(msg.xml.MsgType[0] == 'image'){
     console.log("picture");
-    replyText = "It's a picture"
+    replyText = "辣眼睛";
   }
   else if(msg.xml.MsgType[0] == 'voice'){
     console.log("voice");
-    replyText = "It's an audio"
+    replyText = "难听到爆";
   }
-
+  else if(msg.xml.MsgType[0] == 'shortvideo')
+   {
+    ctxt="丑逼";
+   }
+    else if(msg.xml.MsgType[0] == 'location')
+   {
+    ctxt="I don't care"
+   }
+  
 
   return tmpl(replyTmpl, {
     toUser: msg.xml.FromUserName[0],
