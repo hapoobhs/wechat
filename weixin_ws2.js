@@ -57,7 +57,7 @@ var server = http.createServer(function (request, response) {
               result.user = userInfo;
               //将消息通过websocket广播
               wss.broadcast(result);
-              var res = replyText(result, '消息推送成功！');
+              var res = replyText(result);
               response.end(res);
             })
           }
