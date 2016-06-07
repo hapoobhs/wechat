@@ -1,4 +1,4 @@
-var PORT = 6666;
+var PORT = require('./lib/config.js')
 
 var http = require('http');
 var qs = require('qs');
