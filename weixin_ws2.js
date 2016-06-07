@@ -134,14 +134,17 @@ function replyText(msg){
     replyText="并不care"
    }
   
-  console.log(msg);
-  return tmpl(replyTmpl, {
+
+  if (msg.xml.MsgType[0] == 'text') {
+    console.log(msg);
+    return tmpl(replyTmpl, {
     toUser: msg.xml.FromUserName[0],
     fromUser: msg.xml.ToUserName[0],
     type: 'text',
     time: Date.now(),
     content: replyText
   });
+  }
 
   else if(msg.xml.MsgType[0] == 'image')
   {
