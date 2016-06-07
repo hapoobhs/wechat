@@ -3,7 +3,7 @@ var PORT = 6666;
 var http = require('http');
 var qs = require('qs');
 
-var wss = require('./lib/ws.js').wss;
+var wss = 8888;
 // var replyText = require('./lib/reply.js').replyText; 
 
 var TOKEN = 'hahaha';
