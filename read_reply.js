@@ -17,8 +17,6 @@ function checkSignature(params, token){
 }
 
 function replyText(msg){
-  if(msg.xml.MsgType[0] !== 'text'){
-    return '';
   }
   console.log(msg);
 
