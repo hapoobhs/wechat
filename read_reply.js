@@ -18,7 +18,7 @@ function checkSignature(params, token){
 
 function replyText(msg){
   if(msg.xml.MsgType[0] !== 'text'){
-    return 'text';
+    return '';
   }
   console.log(msg);
 
@@ -31,6 +31,12 @@ function replyText(msg){
     '<MsgType><![CDATA[{type}]]></MsgType>' +
     '<Content><![CDATA[{content}]]></Content>' +
     '</xml>';
+
+  var replyText;
+
+  if(msg.xml.MsgType[0] == 'text'){
+    replyText = "It's text";
+  }
 
   return tmpl(replyTmpl, {
     toUser: msg.xml.FromUserName[0],
