@@ -16,9 +16,9 @@ function checkSignature(params, token){
   return  sha1.digest('hex') == params.signature;
 }
 
-function replyText(msg, replyText){
+function replyText(msg){
   if(msg.xml.MsgType[0] !== 'text'){
-    return '';
+    return 'text';
   }
   console.log(msg);
 
@@ -66,7 +66,7 @@ var server  = http.createServer(function(request, response){
 
 			parseString(postdata,function(err,result){
 				if (!err) {
-					var res = replyText(result, '傻逼吧');
+					var res = replyText(result);
 					response.end(res);
 				}
 			});
