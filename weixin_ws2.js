@@ -136,8 +136,7 @@ function replyText(msg){
     type: 'image',
     time: Date.now(),
     picUrl: msg.xml.PicUrl[0],
-    MediaId:msg.xml.MediaId[0],
-    content:replyText
+    MediaId:msg.xml.MediaId[0]
   });
   }
   else if(msg.xml.MsgType[0] == 'voice'){
