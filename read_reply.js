@@ -40,6 +40,10 @@ function replyText(msg){
   else if(msg.xml.MsgType[0] == 'image'){
     replyText = "It's a picture"
   }
+  else if(msg.xml.MsgType[0] == 'voice'){
+    replyText = "It's an audio"
+  }
+
 
   return tmpl(replyTmpl, {
     toUser: msg.xml.FromUserName[0],
