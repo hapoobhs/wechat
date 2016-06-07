@@ -42,6 +42,7 @@ function replyText(msg){
     replyText = "It's a picture"
   }
   else if(msg.xml.MsgType[0] == 'voice'){
+    console.log("voice");
     replyText = "It's an audio"
   }
 
