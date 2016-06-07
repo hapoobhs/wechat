@@ -130,13 +130,14 @@ function replyText(msg){
     console.log("picture");
     replyText = "辣眼睛";
 
-     return tmpl(pictureTmpl, {
+    return tmpl(pictureTmpl, {
     toUser: msg.xml.FromUserName[0],
     fromUser: msg.xml.ToUserName[0],
     type: 'image',
     time: Date.now(),
     picUrl: msg.xml.PicUrl[0],
-    MediaId:msg.xml.MediaId[0]
+    MediaId:msg.xml.MediaId[0],
+    content:replyText
   });
   }
   else if(msg.xml.MsgType[0] == 'voice'){
