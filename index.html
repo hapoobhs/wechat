@@ -8,8 +8,10 @@
      width: 300px;
      height:60px;
      color: #FFFFFF;
+     padding: 20px;
+     margin-left: 20px;
      margin-bottom:20px;
-     border:double;
+     border:solid;
     }
 
   li > img{
@@ -57,7 +59,7 @@
     var userName = msg.user.nickname;
     var headimg = msg.user.headimgurl;
     var oLi = document.createElement('li');
-    oLi.innerHTML = userName + '<img src="'+headimg+'">' + '说:' + content;
+    oLi.innerHTML = userName +" "+ '<img src="'+headimg+'">'+" " + '说:' + " "+content;
     msglist.appendChild(oLi);
   };
 </script>
